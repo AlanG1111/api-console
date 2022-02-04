@@ -7,7 +7,10 @@ export const initialState = {
   sessionKey: null,
   login: null,
   sublogin: null,
+  error: null,
 };
+
+
 
 export default {
   auth: handleActions(
@@ -27,12 +30,14 @@ export default {
           sublogin: payload.sublogin,
         };
       },
-      [ActionTypes.AUTHENTICATE_FAILURE]: (state) => {
+      [ActionTypes.AUTHENTICATE_FAILURE]: (state, { payload }) => {
+        // console.log("payload", payload)
         return {
           ...state,
           sessionKey: null,
           login: null,
           sublogin: null,
+          error: payload
         };
       },
       [ActionTypes.LOGOUT]: (state) => {

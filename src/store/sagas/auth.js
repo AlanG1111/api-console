@@ -17,6 +17,7 @@ export function* authenticateCheckSaga() {
 }
 
 export function* authenticateSaga({payload}) {
+  let error = null
   yield api.sendsay
     .login({
       login: payload.login,
@@ -27,20 +28,26 @@ export function* authenticateSaga({payload}) {
       document.cookie = `sendsay_session=${api.sendsay.session}`;
     })
     .catch((err) => {
+      error = err
       document.cookie = '';
-      console.log('err', err);
+      // console.log('err', error);
     });
 
-  yield put(
-    authenticateSuccess({
-      sessionKey: api.sendsay.session,
-      login: payload.login,
-      sublogin: payload.sublogin,
-    })
-  );
+    if(!error) {
+      yield put(
+        authenticateSuccess({
+          sessionKey: api.sendsay.session,
+          login: payload.login,
+          sublogin: payload.sublogin,
+        })
+      );
+    } else {
+      yield put(authenticateFailure(error));
+    } 
 }
 
 export function* logoutSaga() {
+  console.log("authenticateFailure", authenticateFailure)
   yield put(authenticateFailure());
   document.cookie = '';
 }
