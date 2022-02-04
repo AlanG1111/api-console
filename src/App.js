@@ -18,7 +18,7 @@ function App() {
             <Route exact path="/">
               <LoginPage />
             </Route>
-            <Route path="/console">
+            <Route exact path="/console">
               <ConsolePage />
             </Route>
           </Switch>

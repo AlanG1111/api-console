@@ -1,11 +1,10 @@
 import React from 'react'
 import { logout } from 'src/store/actions/auth';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
-const ConsolePage = () => {
+const ConsolePage = ({history}) =>  {
     const dispatch = useDispatch()
-    const history = useHistory()
     const doLogout = () => {
         dispatch(logout())
         history.push('/')
@@ -16,4 +15,4 @@ const ConsolePage = () => {
     )
 }
 
-export default ConsolePage
+export default withRouter(ConsolePage)

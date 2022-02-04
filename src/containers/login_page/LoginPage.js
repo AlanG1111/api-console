@@ -27,6 +27,7 @@ function LoginPage({history}) {
   useEffect(() => {
     dispatch(authenticateFailure(null))
   }, [])
+  console.log("history",history)
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -45,13 +46,9 @@ function LoginPage({history}) {
   };
 
   function onSubmit(event) {
-    console.log('error', error)
     event.preventDefault();
     setIsLoading(true)
-
-    if(!error) {
-      doLogin();
-    }
+    doLogin();
   }
 
   const blurHandler = (e) => {
@@ -74,7 +71,7 @@ function LoginPage({history}) {
     const loginEmailRegExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-] +@ [a-zA-Z0 -9-]+(?:\.[a-zA-Z0-9-]+)*$/
     setLogin(value)
 
-    if (loginEmailRegExp.test(String(value)) || loginUsernameRegExp.test(String(value)) 
+    if (!loginEmailRegExp.test(String(value)) || !loginUsernameRegExp.test(String(value)) 
     || loginDirty) {
       label.style.color = "red"
       input.style.borderColor = "red"
