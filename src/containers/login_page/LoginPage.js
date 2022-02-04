@@ -4,7 +4,7 @@ import {withRouter} from 'react-router-dom';
 import ErrorAlert from './errorAuth'
 import Spinner from './spinner'
 
-import {authenticate} from 'src/store/actions/auth';
+import {authenticate, authenticateFailure} from 'src/store/actions/auth';
 
 import './loginPage.css'
 
@@ -15,14 +15,18 @@ function LoginPage({history}) {
   const [password, setPassword] = useState('');
   const loading = useSelector((state) => state.auth.loading);
   const isLoggedIn = useSelector((state) => !!state.auth.sessionKey?.length);
-  const error = useSelector((state) => state.auth)
+  const error = useSelector((state) => state.auth.error)
   const [loginDirty, setLoginDirty] = useState(false)
   const [passwordDirty, setPasswordDirty] = useState(false)
   const [formValid, setFormValid] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
-  // console.log('errpr', error)
+  // console.log({isLoggedIn})
   // console.log("login", login)
-  // console.log('loading', loading);
+  console.log('loading', loading);
+
+  useEffect(() => {
+    dispatch(authenticateFailure(null))
+  }, [])
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -44,7 +48,8 @@ function LoginPage({history}) {
     console.log('error', error)
     event.preventDefault();
     setIsLoading(true)
-    if(event) {
+
+    if(!error) {
       doLogin();
     }
   }
@@ -125,8 +130,8 @@ function LoginPage({history}) {
             id='password' type='password' value={password} 
             onChange={(e) => passwordHandler(e)} 
             placeholder="Пароль" required/>        
-        <button type="submit" onClick={onSubmit} disabled={formValid}>
-          {isLoading ? <Spinner /> : 'Войти'}
+        <button type="submit" onClick={onSubmit} disabled={false}>
+          {isLoading && !error ? <Spinner /> : 'Войти'}
         </button>
       </form>
     </div>
