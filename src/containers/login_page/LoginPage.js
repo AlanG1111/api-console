@@ -1,11 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {withRouter} from 'react-router-dom';
+import {authenticate, authenticateFailure} from 'src/store/actions/auth';
 import ErrorAlert from './errorAuth'
 import Spinner from './spinner'
-
-import {authenticate, authenticateFailure} from 'src/store/actions/auth';
-
 import './loginPage.css'
 
 function LoginPage({history}) {
@@ -27,7 +25,6 @@ function LoginPage({history}) {
   useEffect(() => {
     dispatch(authenticateFailure(null))
   }, [])
-  console.log("history",history)
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -52,7 +49,6 @@ function LoginPage({history}) {
   }
 
   const blurHandler = (e) => {
-    console.log('e.target.id', e.target.id)
     switch (e.target.id) {
       case 'login':
         setLoginDirty(true)
@@ -70,8 +66,9 @@ function LoginPage({history}) {
     const loginUsernameRegExp = /a-zA-Z0-9/
     const loginEmailRegExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-] +@ [a-zA-Z0 -9-]+(?:\.[a-zA-Z0-9-]+)*$/
     setLogin(value)
+    console.log("regexp",loginUsernameRegExp.test(String(value).toLowerCase()) )
 
-    if (!loginEmailRegExp.test(String(value)) || !loginUsernameRegExp.test(String(value)) 
+    if (loginEmailRegExp.test(String(value)) || loginUsernameRegExp.test(String(value)) 
     || loginDirty) {
       label.style.color = "red"
       input.style.borderColor = "red"
@@ -89,7 +86,6 @@ function LoginPage({history}) {
     const value = e.target.value
     const passwordRegExp = /a-zA-Z0-9_\.-\s/
     setPassword(value)
-    console.log("e.target.value", value)
 
     if(passwordDirty || passwordRegExp.test(String(value))){
       label.style.color = "red"
@@ -127,7 +123,7 @@ function LoginPage({history}) {
             id='password' type='password' value={password} 
             onChange={(e) => passwordHandler(e)} 
             placeholder="Пароль" required/>        
-        <button type="submit" onClick={onSubmit} disabled={false}>
+        <button type="submit" onClick={onSubmit} disabled={formValid}>
           {isLoading && !error ? <Spinner /> : 'Войти'}
         </button>
       </form>

@@ -5,11 +5,11 @@ import { withRouter } from 'react-router-dom';
 
 const ConsolePage = ({history}) =>  {
     const dispatch = useDispatch()
+    
     const doLogout = () => {
         dispatch(logout())
         history.push('/')
     }
-
     return (
         <button onClick={doLogout}>Logout</button>
     )
