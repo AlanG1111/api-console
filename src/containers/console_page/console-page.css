@@ -39,8 +39,8 @@
     color:rgba(0, 85, 251, 1);
 }
 
-.console-fullscreen:hover {
-    background: rgba(0, 85, 251, 1);
+.console-fullscreen:hover path {
+    stroke: rgba(0, 85, 251, 1);
 }
 
 .console-exit-button span {
@@ -111,7 +111,7 @@
     padding: 10px;
     font-size: 14px;
     resize: none;
-    min-height: 400px;
+    min-height: 75vh;
 }
 
 /* FOOTER  */

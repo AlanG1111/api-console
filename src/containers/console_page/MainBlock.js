@@ -10,7 +10,7 @@ const MainBlock = () => {
             <img className="main-block-dots" src="/icons/dots.svg" alt="dots" />
             <div className="response-answer-area">
                 <span>Ответ:</span>
-                <textarea></textarea>
+                <textarea readOnly></textarea>
             </div>
         </div>
     )

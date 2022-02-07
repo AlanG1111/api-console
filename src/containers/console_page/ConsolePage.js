@@ -11,10 +11,12 @@ const ConsolePage = () =>  {
     return (
         <>  
             <FullScreen handle={handle}>
-                <Header handle={handle}/>
-                <Requests />
-                <MainBlock />
-                <Footer />
+                <div style={{height:'100%'}}>
+                    <Header handle={handle}/>
+                    <Requests />
+                    <MainBlock />
+                    <Footer />
+                </div>
             </FullScreen>
         </>
     )
