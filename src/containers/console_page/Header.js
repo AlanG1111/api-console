@@ -9,7 +9,9 @@ const Header = ({handle, history}) =>  {
     const login = JSON.parse(value).login
     const resLogin = login.slice(1, login.length - 1)
     const subLogin = JSON.parse(value).sublogin
-    const resSubLogin = subLogin.slice(1, subLogin.length - 1)    
+    const resSubLogin = subLogin.slice(1, subLogin.length - 1)
+    
+    console.log("handle.enter", handle.active)
     
     const doLogout = () => {
         dispatch(logout())
@@ -32,7 +34,11 @@ const Header = ({handle, history}) =>  {
                     <span>Выйти</span>
                     <img src="/icons/log-out.svg" alt="log-out" />
                 </div>
-                <img onClick={handle.enter} className='console-fullscreen' src="/icons/full-screen.svg" alt="full-screen" />
+                {
+                handle.active ? 
+                    <img onClick={handle.exit} className='console-fullscreen' src="/icons/full-screen.svg" alt="full-screen" />
+                    : <img onClick={handle.enter} className='console-fullscreen' src="/icons/full-screen.svg" alt="full-screen" />
+                }
             </div>
         </div>
     )

@@ -40,7 +40,7 @@
 }
 
 .console-fullscreen:hover {
-    color: rgba(0, 85, 251, 1);
+    background: rgba(0, 85, 251, 1);
 }
 
 .console-exit-button span {
