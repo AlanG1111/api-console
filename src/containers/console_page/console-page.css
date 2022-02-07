@@ -1,0 +1,43 @@
+.console-header {
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px;
+    max-height: 50px;
+}
+
+.console-logo-block {
+    display: flex;
+    align-items: center;
+}
+
+.console-logo-block span {
+    margin-left: 20px;
+    font-size: 20px;
+}
+
+.console-header-controls {
+    display: flex;
+    align-items: center;
+}
+
+.console-users-info {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding: 5px 15px;
+}
+
+.console-exit-button {
+    display: flex;
+    align-items: center;
+    margin: 0 30px;
+    cursor: pointer;
+}
+
+.console-exit-button span {
+    margin-right: 11px;
+}
+
+.console-header-controls img {
+    cursor: pointer;
+}

@@ -1,18 +1,11 @@
 import React from 'react'
-import { logout } from 'src/store/actions/auth';
-import { useDispatch } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import Header from './Header'
+import './console-page.css'
 
-const ConsolePage = ({history}) =>  {
-    const dispatch = useDispatch()
-    
-    const doLogout = () => {
-        dispatch(logout())
-        history.push('/')
-    }
+const ConsolePage = () =>  {
     return (
-        <button onClick={doLogout}>Logout</button>
+        <Header />
     )
 }
 
-export default withRouter(ConsolePage)
+export default ConsolePage
