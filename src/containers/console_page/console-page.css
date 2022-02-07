@@ -65,3 +65,27 @@
     border-left: 2px solid #E5E5E5;
     cursor: pointer;
 }
+
+.console-footer {
+    background: rgba(246, 246, 246, 1);
+    border-top: 2px solid #E5E5E5;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.console-footer a {
+    color: rgba(153, 153, 153, 1);
+    text-decoration: none;
+}
+
+.console-footer-format {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.console-footer-format span {
+    margin-left: 11px;
+}

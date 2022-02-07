@@ -123,7 +123,7 @@ function LoginPage({history}) {
             id='password' type='password' value={password} 
             onChange={(e) => passwordHandler(e)} 
             placeholder="Пароль" required/>        
-        <button type="submit" onClick={onSubmit} disabled={formValid}>
+        <button className='blue-button' type="submit" onClick={onSubmit} disabled={formValid}>
           {isLoading && !error ? <Spinner /> : 'Войти'}
         </button>
       </form>

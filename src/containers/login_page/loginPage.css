@@ -41,7 +41,7 @@
     border: 1px solid rgba(0, 0, 0, 0.2)
 }
 
-.form-login button {
+.blue-button {
     font-size: 16px;
     color: #fff;
     border: none;
@@ -52,7 +52,7 @@
     linear-gradient(0deg, #C4C4C4, #C4C4C4);
 }
 
-.form-login button:hover {
+.blue-button:hover {
     cursor: pointer;
     background: linear-gradient(180deg, #45A6FF 0%, #0008fb 100%),
     linear-gradient(0deg, #C4C4C4, #C4C4C4);
