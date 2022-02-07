@@ -1,8 +1,8 @@
 import React from "react";
 
-const Requests = () => {
+const RequestsBar = () => {
     return (
-        <div className="requests-block">
+        <div className="requests-bar">
             <div className="requests-tracker">
 
             </div>  
@@ -13,4 +13,4 @@ const Requests = () => {
     )
 }
 
-export default Requests;
+export default RequestsBar;
