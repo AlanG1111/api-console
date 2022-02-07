@@ -3,7 +3,7 @@ import { logout } from 'src/store/actions/auth';
 import { useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-const Header = ({history}) =>  {
+const Header = ({handle, history}) =>  {
     const dispatch = useDispatch()
     const value = localStorage.getItem('persist:root')
     const login = JSON.parse(value).login
@@ -32,7 +32,7 @@ const Header = ({history}) =>  {
                     <span>Выйти</span>
                     <img src="/icons/log-out.svg" alt="log-out" />
                 </div>
-                <img src="/icons/full-screen.svg" alt="full-screen" />
+                <img onClick={handle.enter} className='console-fullscreen' src="/icons/full-screen.svg" alt="full-screen" />
             </div>
         </div>
     )

@@ -1,3 +1,4 @@
+/* HEADER */
 .console-header {
     background: rgba(246, 246, 246, 1);
     display: flex;
@@ -34,6 +35,14 @@
     cursor: pointer;
 }
 
+.console-exit-button:hover {
+    color:rgba(0, 85, 251, 1);
+}
+
+.console-fullscreen:hover {
+    color: rgba(0, 85, 251, 1);
+}
+
 .console-exit-button span {
     margin-right: 11px;
 }
@@ -46,6 +55,8 @@
     color: rgba(0, 0, 0, 0.2);
     margin: 0 5px;
 }
+
+/* HISTORY OF REQUESTS */
 
 .requests-bar {
     background: rgba(246, 246, 246, 1);
@@ -65,6 +76,8 @@
     border-left: 2px solid #E5E5E5;
     cursor: pointer;
 }
+
+/* MAIN BLOCK */
 
 .main-block {
     background: rgba(255, 255, 255, 1);
@@ -100,6 +113,8 @@
     resize: none;
     min-height: 400px;
 }
+
+/* FOOTER  */
 
 .console-footer {
     background: rgba(246, 246, 246, 1);
