@@ -1,5 +1,5 @@
 .console-header {
-    background-color: #fff;
+    background: rgba(246, 246, 246, 1);
     display: flex;
     justify-content: space-between;
     padding: 10px 15px;
@@ -39,5 +39,29 @@
 }
 
 .console-header-controls img {
+    cursor: pointer;
+}
+
+.console-info-dots {
+    color: rgba(0, 0, 0, 0.2);
+    margin: 0 5px;
+}
+
+.requests-block {
+    background: rgba(246, 246, 246, 1);
+    display: flex;
+    border-top: 2px solid #E5E5E5;
+    border-bottom: 2px solid #E5E5E5;
+    max-height: 50px;
+}
+
+.requests-tracker {
+    padding: 10px 15px;
+    min-width: calc(100% - 52px);
+}
+
+.delete-request {
+    padding: 15px;
+    border-left: 2px solid #E5E5E5;
     cursor: pointer;
 }
