@@ -39,7 +39,11 @@
     color:rgba(0, 85, 251, 1);
 }
 
-.console-fullscreen:hover path {
+.console-colored-button {
+    cursor: pointer;
+}
+
+.console-colored-button:hover path {
     stroke: rgba(0, 85, 251, 1);
 }
 
