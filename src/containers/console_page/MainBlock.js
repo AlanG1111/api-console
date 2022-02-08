@@ -1,26 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getData } from "src/store/actions";
 import { TEXT_REQUEST, TEXT_RESPONSE } from "../text_constants";
 
 const MainBlock = () => {
-    // let req = api.sendsay.request({
-    //     "action":"pong"
-    //   })
-    const req = fetch('https://api.sendsay.ru/general/api/v100/json/alangare13@gmail.com/').then((response) => {
-        console.log(response)    
-    return response.json();
-      })
-      
-    console.log("req",req)
+    const dispatch = useDispatch()
+    const answerSuccess = useSelector(state => state.auth.data.data)
+    const answerFailure = useSelector(state => state.auth.data)
+    const [request, setRequest] = useState('')
+    const [answer, setAnswer] = useState('')
+    const ACT = { "action": "pong"}
+    function getDataBtn () {
+        // dispatch(getData(JSON.stringify(ACT)))
+        dispatch(getData(request))
+        setAnswer(JSON.stringify(answerSuccess, undefined, 4))
+        console.log('answer', answer)
+    }
+    
+    function formatText() {
+        const textarea = document.getElementById('textarea-to-format')
+        let wrongValue = textarea.value
+        const res = JSON.stringify(JSON.parse(wrongValue), undefined, 4)
+        setRequest(res)
+        console.log('res', res)
+    }
+    
     return (
         <div className="main-block">
             <div className="response-answer-area">
                 <span>{TEXT_REQUEST}</span>
-                <textarea></textarea>
+                <textarea id="textarea-to-format" value={request} onChange={(e) => setRequest(e.target.value)} />
             </div>
             <img className="main-block-dots" src="/icons/dots.svg" alt="dots" />
+            <button onClick={() => getDataBtn()}>GET_DATA</button>
+            <button onClick={() => formatText()}>FORMAT</button>
             <div className="response-answer-area">
                 <span>{TEXT_RESPONSE}</span>
-                <textarea readOnly></textarea>
+                <textarea readOnly value={answer} />
             </div>
         </div>
     )

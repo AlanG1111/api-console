@@ -8,6 +8,7 @@ export const initialState = {
   login: null,
   sublogin: null,
   error: null,
+  data: null,
 };
 
 
@@ -15,6 +16,27 @@ export const initialState = {
 export default {
   auth: handleActions(
     {
+      [ActionTypes.GET_DATA]: (state, {payload}) => {
+        console.log("payload/GET_DATA", payload)
+        return {
+          ...state,
+          data: payload,
+        };
+      },
+      [ActionTypes.GET_DATA_SUCCESS]: (state, {payload}) => {
+        console.log("payload/GET_DATA_SUCCESS", payload)
+        return {
+          ...state,
+          data: payload,
+        };
+      },
+      [ActionTypes.GET_DATA_FAILURE]: (state, {payload}) => {
+        console.log("payload/GET_DATA_FAILURE", payload)
+        return {
+          ...state,
+          error: payload,
+        };
+      },
       [ActionTypes.AUTHENTICATE]: (state) => {
         return {
           ...state,
@@ -31,7 +53,6 @@ export default {
         };
       },
       [ActionTypes.AUTHENTICATE_FAILURE]: (state, { payload }) => {
-        // console.log("payload", payload)
         return {
           ...state,
           sessionKey: null,

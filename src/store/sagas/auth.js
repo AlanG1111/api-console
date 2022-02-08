@@ -2,7 +2,7 @@ import {all, put, call, takeLatest} from 'redux-saga/effects';
 import api from 'src/helpers/sendsay';
 
 import {ActionTypes} from 'src/store/constants';
-import {authenticateSuccess, authenticateFailure} from 'src/store/actions/auth';
+import {authenticateSuccess, authenticateFailure, getDataSuccess, getDataFailure} from 'src/store/actions/auth';
 
 export function* authenticateCheckSaga() {
   try {
@@ -14,6 +14,30 @@ export function* authenticateCheckSaga() {
       yield call(logoutSaga);
     }
   }
+}
+
+export function* getDataSaga({payload}) {
+  console.log("getDataSaga", payload)
+  let error = null
+  let response = null
+    yield api.sendsay.request(
+      payload
+    )
+    .then((resp) => {
+      response = resp
+    }) .catch ((err) => {
+      error = err
+    })
+
+    if(!error) {
+      yield put(
+        getDataSuccess({
+          data: response
+        })
+      );
+    } else {
+      yield put(getDataFailure(error));
+    } 
 }
 
 export function* authenticateSaga({payload}) {
@@ -54,6 +78,7 @@ export function* logoutSaga() {
 
 export default function* root() {
   yield all([
+    takeLatest(ActionTypes.GET_DATA, getDataSaga),
     takeLatest(ActionTypes.AUTHENTICATE, authenticateSaga),
     takeLatest(ActionTypes.AUTHENTICATE_CHECK, authenticateCheckSaga),
     takeLatest(ActionTypes.LOGOUT, logoutSaga),
