@@ -1,4 +1,5 @@
 import React from 'react'
+import { TEXT_WRONG_EXIT } from '../text_constants'
 import './loginPage.css'
 
 const svgSmile = <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -17,7 +18,7 @@ const ErrorAlert = ({error}) => {
         <div className='error-alert'>
             <div className='svg-smile'>{svgSmile}</div> 
             <div className='no-entry-error-code'>
-                <span>Вход не вышел</span>
+                <span>{TEXT_WRONG_EXIT}</span>
                 <span>{ JSON.stringify(errObj) }</span>
             </div>
         </div>

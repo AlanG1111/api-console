@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom';
 import iconFullScreenClose from './icons/full-screen-close'
 import iconFullScreen from './icons/full-screen'
 import logOut from './icons/log-out';
+import { TEXT_API_CONSOLE, TEXT_EXIT } from '../text_constants';
 
 const Header = ({handle, history}) =>  {
     const dispatch = useDispatch()
@@ -24,7 +25,7 @@ const Header = ({handle, history}) =>  {
         <div className='console-header'>
             <div className='console-logo-block'>
                 <img src="/icons/logo.svg" alt="Logo" />
-                <span>API-консолька</span>
+                <span>{TEXT_API_CONSOLE}</span>
             </div>
             <div className='console-header-controls'>
                 <div className='console-users-info'>
@@ -34,7 +35,7 @@ const Header = ({handle, history}) =>  {
                     </span>
                 </div>
                 <div onClick={doLogout} className='console-colored-button console-exit-button'>
-                    <span>Выйти</span>{logOut}
+                    <span>{TEXT_EXIT}</span>{logOut}
                 </div>
                 {
                 handle.active ? 
