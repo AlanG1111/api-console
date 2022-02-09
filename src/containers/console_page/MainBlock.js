@@ -1,16 +1,17 @@
-import { func } from "prop-types";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getData } from "src/store/actions";
+import { getData, saveHistory } from "src/store/actions";
 import { TEXT_REQUEST, TEXT_RESPONSE } from "../text_constants";
 import Footer from "./Footer";
 
 const MainBlock = () => {
     const dispatch = useDispatch()
-    const answerSuccess = useSelector(state => state.auth.data.data)
+    const answerSuccess = useSelector(state => state.auth.data?.data)
     const answerFailure = useSelector(state => state.auth.error)
+    
     const [request, setRequest] = useState('')
     const [answer, setAnswer] = useState('')
+    
     const ACT = { "action": "pong"}
     function getDataBtn () {
         dispatch(getData(request))
@@ -18,9 +19,10 @@ const MainBlock = () => {
             setAnswer(JSON.stringify(answerSuccess, undefined, 4))
         }
         setAnswer(JSON.stringify(answerFailure, undefined, 4))
-
-        console.log('answerSuccess', answerSuccess)
-        console.log('answerFailure', answerFailure)
+        dispatch(saveHistory(request))
+        
+        // console.log('answerSuccess', answerSuccess)
+        // console.log('answerFailure', answerFailure)
     }
     
     function formatText() {

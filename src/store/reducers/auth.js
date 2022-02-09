@@ -9,6 +9,7 @@ export const initialState = {
   sublogin: null,
   error: null,
   data: null,
+  history: null,
 };
 
 
@@ -16,6 +17,30 @@ export const initialState = {
 export default {
   auth: handleActions(
     {
+      [ActionTypes.REMOVE_HISTORY]: (state, {payload}) => {
+        // payload = JSON.parse(payload)
+        console.log("payload/REMOVE_HISTORY", payload)
+        return {
+          ...state,
+          history: payload ,
+        };
+      },
+      [ActionTypes.SAVE_HISTORY]: (state, {payload}) => {
+        console.log("payload/SAVE_HISTORY", payload)
+        const prevHistory = state.history
+        payload = JSON.parse(payload)
+        if(prevHistory) {
+          return {
+            ...state,
+            history: [payload,...prevHistory]
+          }
+        } else {
+          return {
+            ...state,
+            history: [payload]
+          }
+        }
+      },
       [ActionTypes.GET_DATA]: (state, {payload}) => {
         console.log("payload/GET_DATA", payload)
         return {

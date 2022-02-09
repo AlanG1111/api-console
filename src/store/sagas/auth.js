@@ -25,7 +25,7 @@ export function* getDataSaga({payload}) {
     )
     .then((resp) => {
       response = resp
-    }) .catch ((err) => {
+    }).catch ((err) => {
       error = err
     })
 
