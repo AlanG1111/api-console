@@ -1,45 +1,79 @@
+import { func } from "prop-types";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getData } from "src/store/actions";
 import { TEXT_REQUEST, TEXT_RESPONSE } from "../text_constants";
+import Footer from "./Footer";
 
 const MainBlock = () => {
     const dispatch = useDispatch()
     const answerSuccess = useSelector(state => state.auth.data.data)
-    const answerFailure = useSelector(state => state.auth.data)
+    const answerFailure = useSelector(state => state.auth.error)
     const [request, setRequest] = useState('')
     const [answer, setAnswer] = useState('')
     const ACT = { "action": "pong"}
     function getDataBtn () {
-        // dispatch(getData(JSON.stringify(ACT)))
         dispatch(getData(request))
-        setAnswer(JSON.stringify(answerSuccess, undefined, 4))
-        console.log('answer', answer)
+        if(answerSuccess) {
+            setAnswer(JSON.stringify(answerSuccess, undefined, 4))
+        }
+        setAnswer(JSON.stringify(answerFailure, undefined, 4))
+
+        console.log('answerSuccess', answerSuccess)
+        console.log('answerFailure', answerFailure)
     }
     
     function formatText() {
         const textarea = document.getElementById('textarea-to-format')
         let wrongValue = textarea.value
-        const res = JSON.stringify(JSON.parse(wrongValue), undefined, 4)
-        setRequest(res)
-        console.log('res', res)
+        if(wrongValue.length > 0 && isJsonString(wrongValue)) {
+            const res = JSON.stringify(JSON.parse(wrongValue), undefined, 4)
+            setRequest(res)
+        }
+    }
+
+    const handlerGetDataBtn = () => {
+        isJsonString(request)
+        getDataBtn()
+        haveAnswerError()
+    }
+
+    function isJsonString(str) {
+        const textarea = document.getElementById('textarea-to-format')
+        try {
+            JSON.parse(str);
+        } catch (e) {
+            textarea.style.borderColor = "red"
+            return false;
+        }
+        textarea.style.borderColor = "rgba(0, 0, 0, 0.2)"
+        return true;
+    }
+
+    function haveAnswerError() {
+        const textarea = document.getElementById('textarea-for-answer')
+        if(answerFailure) {
+            textarea.style.borderColor = "red"
+        } else {
+            textarea.style.borderColor = "rgba(0, 0, 0, 0.2)"
+        }
     }
     
     return (
+        <>
         <div className="main-block">
             <div className="response-answer-area">
                 <span>{TEXT_REQUEST}</span>
                 <textarea id="textarea-to-format" value={request} onChange={(e) => setRequest(e.target.value)} />
             </div>
             <img className="main-block-dots" src="/icons/dots.svg" alt="dots" />
-            <button onClick={() => getDataBtn()}>GET_DATA</button>
-            <button onClick={() => formatText()}>FORMAT</button>
             <div className="response-answer-area">
                 <span>{TEXT_RESPONSE}</span>
-                <textarea readOnly value={answer} />
+                <textarea id="textarea-for-answer" readOnly value={answer} />
             </div>
         </div>
-    )
-}
+        <Footer handlerGetDataBtn={handlerGetDataBtn} formatText={formatText}/>
+        </>
+)}
 
 export default MainBlock;
