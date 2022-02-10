@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getData, saveHistory } from "src/store/actions";
 import { TEXT_REQUEST, TEXT_RESPONSE } from "../text_constants";
 import Footer from "./Footer";
+import RequestsBar from "./RequestsBar";
 
 const MainBlock = () => {
     const dispatch = useDispatch()
@@ -12,8 +13,13 @@ const MainBlock = () => {
     const [answer, setAnswer] = useState('')
     
     const ACT = { "action": "pong"}
-    function getDataBtn () {
-        dispatch(getData(request))
+    function getDataBtn (requestFromHistory) {
+        console.log('requestFromHistory',requestFromHistory)
+        if(requestFromHistory) {
+            dispatch(getData(requestFromHistory))
+        } else {
+            dispatch(getData(request))
+        }
         if(answerSuccess) {
             setAnswer(JSON.stringify(answerSuccess, undefined, 4))
         } else {
@@ -64,6 +70,7 @@ const MainBlock = () => {
     
     return (
         <>
+        <RequestsBar getDataBtn={getDataBtn} />
         <div className="main-block">
             <div className="response-answer-area">
                 <span>{TEXT_REQUEST}</span>

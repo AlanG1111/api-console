@@ -9,7 +9,6 @@ const initialState = {
 export default {
     history: handleActions({
         [ActionTypes.REMOVE_HISTORY_ELEMENT]: (state, {payload}) => {
-          console.log("payload/REMOVE_HISTORY_ELEMENT", payload)
           const prevHistory = state.history
           const res = prevHistory.filter((obj) => {
             return obj.id !== payload
@@ -31,10 +30,14 @@ export default {
           const prevHistory = state.history
           payload = JSON.parse(payload)
           payload.id = Math.random()
+          const filteredHistory = prevHistory.filter((obj) => {
+            return obj.action !== payload.action
+          })
+          
           if(prevHistory) {
             return {
               ...state,
-              history: [payload,...prevHistory]
+              history: [payload,...filteredHistory]
             }
           } else {
             return {

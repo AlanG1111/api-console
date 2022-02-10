@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeHistory, removeHistoryElement } from "src/store/actions/history";
 import { TEXT_COPIED, TEXT_COPY, TEXT_FULFILL, TEXT_REMOVE } from "../text_constants";
 
-const RequestsBar = () => {
+const RequestsBar = ({getDataBtn}) => {
     const dispatch = useDispatch()
     const savedhistory = useSelector(state => state.history.history)
     console.log('savehistory',savedhistory)
@@ -23,7 +23,7 @@ const RequestsBar = () => {
         <div className="requests-bar">
             <div className="requests-tracker">
                 {savedhistory?.map((obj) => obj ? 
-                    <HistoryElement obj={obj}/> 
+                    <HistoryElement obj={obj} getDataBtn={getDataBtn}/> 
                 : null) }
             </div>  
             <div onClick={() => {deleteHistoryElement()}} className="delete-request">
@@ -33,12 +33,10 @@ const RequestsBar = () => {
     )
 }
 
-const HistoryElement = ({obj}) => {
+const HistoryElement = ({obj, getDataBtn}) => {
     const dispatch = useDispatch()
     const toggleInput = (id, e) => {
         const el = document.getElementById(id);
-        // console.log('id', id)
-        // console.log('e.target.id', e.target.id)
         if (el.style.display === "flex" && e.target.id !== id) {
             el.style.display = "none";
         } else {
@@ -49,6 +47,7 @@ const HistoryElement = ({obj}) => {
     const fulfill = (obj) => {
         const request = { action: obj.action}
         console.log('request', request)
+        getDataBtn(request)
         // dispatch(getData(request))
     }
 
@@ -72,7 +71,7 @@ const HistoryElement = ({obj}) => {
         <div key={obj.id} id={obj.id + 1} className="requests-tracker-element">
             <span>{`${obj.action}`}</span>
             <img id={obj.id + 2} onClick={(e) => toggleInput(obj.id, e)} className="request-tracker-dots" src="/icons/dots.svg" alt="dots" />
-            <span>{TEXT_COPIED}</span>
+            {/* <span>{TEXT_COPIED}</span> */}
             <div id={obj.id} className="request-tracker-dropdown">
                 <div className="dropdown-buttons">
                     <div onClick={() => {fulfill(obj)}} className="dropdown-buttons-fulfill dropdown-buttons-el">{TEXT_FULFILL}</div>
