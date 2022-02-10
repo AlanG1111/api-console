@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeHistory, removeHistoryElement } from "src/store/actions/history";
-import { TEXT_COPY, TEXT_FULFILL, TEXT_REMOVE } from "../text_constants";
+import { TEXT_COPIED, TEXT_COPY, TEXT_FULFILL, TEXT_REMOVE } from "../text_constants";
 
 const RequestsBar = () => {
     const dispatch = useDispatch()
@@ -72,7 +72,7 @@ const HistoryElement = ({obj}) => {
         <div key={obj.id} id={obj.id + 1} className="requests-tracker-element">
             <span>{`${obj.action}`}</span>
             <img id={obj.id + 2} onClick={(e) => toggleInput(obj.id, e)} className="request-tracker-dots" src="/icons/dots.svg" alt="dots" />
-            {/* <span>Скопировано</span> */}
+            <span>{TEXT_COPIED}</span>
             <div id={obj.id} className="request-tracker-dropdown">
                 <div className="dropdown-buttons">
                     <div onClick={() => {fulfill(obj)}} className="dropdown-buttons-fulfill dropdown-buttons-el">{TEXT_FULFILL}</div>
