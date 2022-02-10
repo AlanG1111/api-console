@@ -17,12 +17,14 @@ const MainBlock = () => {
         dispatch(getData(request))
         if(answerSuccess) {
             setAnswer(JSON.stringify(answerSuccess, undefined, 4))
+        } else {
+            setAnswer(JSON.stringify(answerFailure, undefined, 4))
         }
-        setAnswer(JSON.stringify(answerFailure, undefined, 4))
+        
         dispatch(saveHistory(request))
         
-        // console.log('answerSuccess', answerSuccess)
-        // console.log('answerFailure', answerFailure)
+        console.log('answerSuccess', answerSuccess)
+        console.log('answerFailure', answerFailure)
     }
     
     function formatText() {
@@ -54,7 +56,7 @@ const MainBlock = () => {
 
     function haveAnswerError() {
         const textarea = document.getElementById('textarea-for-answer')
-        if(answerFailure) {
+        if(!answerSuccess) {
             textarea.style.borderColor = "red"
         } else {
             textarea.style.borderColor = "rgba(0, 0, 0, 0.2)"

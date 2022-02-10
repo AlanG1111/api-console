@@ -1,6 +1,7 @@
 import keyMirror from 'fbjs/lib/keyMirror';
 
 export const ActionTypes = keyMirror({
+  REMOVE_HISTORY_ELEMENT: undefined,
   REMOVE_HISTORY: undefined,
   SAVE_HISTORY: undefined,
   GET_DATA: undefined,

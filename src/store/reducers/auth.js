@@ -9,16 +9,26 @@ export const initialState = {
   sublogin: null,
   error: null,
   data: null,
-  history: null,
+  history: [],
 };
 
 
 
 export default {
   auth: handleActions(
-    {
+    { 
+      [ActionTypes.REMOVE_HISTORY_ELEMENT]: (state, {payload}) => {
+        console.log("payload/REMOVE_HISTORY_ELEMENT", payload)
+        const prevHistory = state.history
+        const res = prevHistory.filter((obj) => {
+          return obj.id !== payload
+        })
+        return {
+          ...state,
+          history: [...res] ,
+        };
+      },
       [ActionTypes.REMOVE_HISTORY]: (state, {payload}) => {
-        // payload = JSON.parse(payload)
         console.log("payload/REMOVE_HISTORY", payload)
         return {
           ...state,
@@ -29,6 +39,7 @@ export default {
         console.log("payload/SAVE_HISTORY", payload)
         const prevHistory = state.history
         payload = JSON.parse(payload)
+        payload.id = Math.random()
         if(prevHistory) {
           return {
             ...state,

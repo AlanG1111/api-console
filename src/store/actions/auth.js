@@ -2,7 +2,8 @@ import {createActions} from 'redux-actions';
 
 import {ActionTypes} from 'src/store/constants';
 
-export const {saveHistory, removeHistory, getData, getDataSuccess, getDataFailure, authenticate, authenticateSuccess, authenticateCheck, authenticateFailure, logout} = createActions({
+export const {removeHistoryElement, saveHistory, removeHistory, getData, getDataSuccess, getDataFailure, authenticate, authenticateSuccess, authenticateCheck, authenticateFailure, logout} = createActions({
+  [ActionTypes.REMOVE_HISTORY_ELEMENT]: (payload) => payload,
   [ActionTypes.SAVE_HISTORY]: (payload) => payload,
   [ActionTypes.REMOVE_HISTORY]: (payload) => payload,
   [ActionTypes.GET_DATA]: (payload) => payload,
