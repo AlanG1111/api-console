@@ -7,7 +7,7 @@ import RequestsBar from "./RequestsBar";
 
 const MainBlock = () => {
     const dispatch = useDispatch()
-    const answerSuccess = useSelector(state => state.data.data?.data)
+    const answerSuccess = useSelector(state => state.data)
     const answerFailure = useSelector(state => state.data.error)
     const [request, setRequest] = useState('')
     const [answer, setAnswer] = useState('')
@@ -15,11 +15,13 @@ const MainBlock = () => {
     const ACT = { "action": "pong"}
     function getDataBtn (requestFromHistory) {
         console.log('requestFromHistory',requestFromHistory)
-        if(requestFromHistory) {
-            dispatch(getData(requestFromHistory))
-        } else {
-            dispatch(getData(request))
-        }
+        // if(requestFromHistory) {
+        //     dispatch(getData(requestFromHistory))
+        //     setRequest(requestFromHistory)
+        // } else {
+        //     dispatch(getData(request))
+        // }
+        dispatch(getData(request))
         if(answerSuccess) {
             setAnswer(JSON.stringify(answerSuccess, undefined, 4))
         } else {

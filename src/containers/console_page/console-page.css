@@ -102,6 +102,23 @@
     display: none;
 }
 
+.request-tracker-copied {
+    background: rgba(255, 255, 255, 1);
+    font-size: 12px;
+    position: absolute;
+    transform: translateY(-20px);
+    opacity: 0.2;
+}
+
+.hidden {
+    display: none;
+}
+
+.showed {
+    display: block;
+    transition: all 200ms ease;
+}
+
 .dropdown-buttons-el {
     padding: 10px 15px;
     cursor: pointer;

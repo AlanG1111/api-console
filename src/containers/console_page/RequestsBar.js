@@ -47,7 +47,7 @@ const HistoryElement = ({obj, getDataBtn}) => {
     const fulfill = (obj) => {
         const request = { action: obj.action}
         console.log('request', request)
-        getDataBtn(request)
+        getDataBtn(JSON.stringify(request))
         // dispatch(getData(request))
     }
 
@@ -55,27 +55,34 @@ const HistoryElement = ({obj, getDataBtn}) => {
         dispatch(removeHistoryElement(id))
     }
 
-    const copy = (str) => {
+    const copy = (id,str,e) => {
         const copied = JSON.stringify({ action: str})
         const area = document.createElement('textarea');
+        const el = document.getElementById(id);
+        console.log('el',el)
+        if (e.target.id !== id) {
+            console.log('el2',el)
+            el.classList.add('showed')
+        }
 
         document.body.appendChild(area);  
           area.value = copied;
           area.select();
           document.execCommand("copy");
         document.body.removeChild(area);
-        console.log('copy', copied)
+        console.log('copied',copied)
+        console.log('id',id)
     }
     
     return (
         <div key={obj.id} id={obj.id + 1} className="requests-tracker-element">
             <span>{`${obj.action}`}</span>
             <img id={obj.id + 2} onClick={(e) => toggleInput(obj.id, e)} className="request-tracker-dots" src="/icons/dots.svg" alt="dots" />
-            {/* <span>{TEXT_COPIED}</span> */}
+            <span id={obj.id + 3} className="request-tracker-copied hidden">{TEXT_COPIED}</span>
             <div id={obj.id} className="request-tracker-dropdown">
                 <div className="dropdown-buttons">
                     <div onClick={() => {fulfill(obj)}} className="dropdown-buttons-fulfill dropdown-buttons-el">{TEXT_FULFILL}</div>
-                    <div onClick={() => {copy(obj.action)}} className="dropdown-buttons-copy dropdown-buttons-el">{TEXT_COPY}</div>
+                    <div onClick={(e) => {copy(obj.id + 3,obj.action,e)}} className="dropdown-buttons-copy dropdown-buttons-el">{TEXT_COPY}</div>
                     <div className="dropdown-buttons-space dropdown-buttons-border"></div>
                     <div className="dropdown-buttons-space"></div>
                     <div onClick={() => {removeElement(obj.id)}} className="dropdown-buttons-remove dropdown-buttons-el">{TEXT_REMOVE}</div>
