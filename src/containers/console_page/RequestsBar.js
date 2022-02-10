@@ -1,11 +1,11 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getData, removeHistory, removeHistoryElement } from "src/store/actions";
+import { removeHistory, removeHistoryElement } from "src/store/actions/history";
 import { TEXT_COPY, TEXT_FULFILL, TEXT_REMOVE } from "../text_constants";
 
 const RequestsBar = () => {
     const dispatch = useDispatch()
-    const savedhistory = useSelector(state => state.auth.history)
+    const savedhistory = useSelector(state => state.history.history)
     console.log('savehistory',savedhistory)
 
     if(savedhistory.length > 15) {

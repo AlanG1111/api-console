@@ -6,9 +6,8 @@ import Footer from "./Footer";
 
 const MainBlock = () => {
     const dispatch = useDispatch()
-    const answerSuccess = useSelector(state => state.auth.data)
-    const answerFailure = useSelector(state => state.auth.error)
-    console.log('state', useSelector(state => state.auth.data))
+    const answerSuccess = useSelector(state => state.data.data?.data)
+    const answerFailure = useSelector(state => state.data.error)
     const [request, setRequest] = useState('')
     const [answer, setAnswer] = useState('')
     
