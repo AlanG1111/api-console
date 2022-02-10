@@ -15,17 +15,26 @@ export function* authenticateCheckSaga() {
     }
   }
 }
+const ads = () => {
+  api.sendsay.request({ "action": "sys.settings.get"}).then(function(res) {
+    console.log('res',res);
+  })
+}
+
+ads()
 
 export function* getDataSaga({payload}) {
   console.log("getDataSaga", payload)
   let error = null
   let response = null
     yield api.sendsay.request(
-      payload
+      { "action": "sys.settings.get"}
     )
     .then((resp) => {
+      console.log('resp', resp)
       response = resp
     }).catch ((err) => {
+      console.log('err', err)
       error = err
     })
 
