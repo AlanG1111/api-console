@@ -5,6 +5,7 @@ import {ActionTypes} from 'src/store/constants';
 const initialState = {
     error: null,
     data: null,
+    answer: null,
 }
 
 export default {
@@ -20,7 +21,7 @@ export default {
         console.log("payload/GET_DATA_SUCCESS", payload)
         return {
           ...state,
-          data: payload,
+          answer: payload,
         };
       },
       [ActionTypes.GET_DATA_FAILURE]: (state, {payload}) => {

@@ -30,7 +30,6 @@ export function* authenticateSaga({payload}) {
     .catch((err) => {
       error = err
       document.cookie = '';
-      // console.log('err', error);
     });
 
     if(!error) {

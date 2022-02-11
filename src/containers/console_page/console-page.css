@@ -84,6 +84,21 @@
     box-shadow: 0px 5px 41px 9px rgba(0, 0, 0, 0.2);
 }
 
+.requests-tracker-answer {
+    background: rgba(48, 184, 0, 1);
+}
+
+.ellipse {
+    border-radius: 50%;
+    height: 10px;
+    width: 10px;
+    margin-right: 5px;
+}
+
+.requests-tracker-error {
+    background: rgba(207, 44, 0, 1);
+}
+
 .requests-tracker-copied-text {
     position: absolute;
 }
@@ -106,17 +121,15 @@
     background: rgba(255, 255, 255, 1);
     font-size: 12px;
     position: absolute;
-    transform: translateY(-20px);
-    opacity: 0.2;
-}
-
-.hidden {
-    display: none;
+    opacity: 1;
+    z-index: -1;
 }
 
 .showed {
-    display: block;
-    transition: all 200ms ease;
+    z-index: 1;
+    transform: translateY(-20px);
+    opacity: 0; 
+    transition: all 3000ms ease;
 }
 
 .dropdown-buttons-el {

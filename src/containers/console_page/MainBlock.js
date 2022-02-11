@@ -7,8 +7,8 @@ import RequestsBar from "./RequestsBar";
 
 const MainBlock = () => {
     const dispatch = useDispatch()
-    const answerSuccess = useSelector(state => state.data)
-    const answerFailure = useSelector(state => state.data.error)
+    const answerSuccess = useSelector(state => state.data?.answer)
+    const answerFailure = useSelector(state => state.data?.error)
     const [request, setRequest] = useState('')
     const [answer, setAnswer] = useState('')
     
