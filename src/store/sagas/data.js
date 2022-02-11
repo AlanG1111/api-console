@@ -4,21 +4,21 @@ import api from 'src/helpers/sendsay';
 import {ActionTypes} from 'src/store/constants';
 import {getDataSuccess, getDataFailure} from 'src/store/actions';
 
-const ads = () => {
-    api.sendsay.request({ "action": "sys.settings.get"}).then(function(res) {
-      console.log('res',res);
-    }).catch ((err) => {
-      console.log('error', err)
-    })
-  }
+// const ads = () => {
+//     api.sendsay.request({ "action": "sys.settings.get"}).then(function(res) {
+//       console.log('res',res);
+//     }).catch ((err) => {
+//       console.log('error', err)
+//     })
+//   }
   
-ads()
+// ads()
 export function* getDataSaga({payload}) {
-  console.log("getDataSaga", payload)
+  console.log("PAYLOAD", typeof(JSON.parse(payload)))
   let error = null
   let response = null
     yield api.sendsay.request(
-      payload
+      JSON.parse(payload)
     )
     .then((resp) => {
       console.log('resp', resp)

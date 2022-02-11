@@ -6,7 +6,7 @@ import { TEXT_COPIED, TEXT_COPY, TEXT_FULFILL, TEXT_REMOVE } from "../text_const
 const RequestsBar = ({getDataBtn}) => {
     const dispatch = useDispatch()
     const savedhistory = useSelector(state => state.history.history)
-    console.log('savehistory',savedhistory)
+    // console.log('savehistory',savedhistory)
 
     if(savedhistory.length > 15) {
         const removedLast = savedhistory.slice(0, savedhistory.length - 1)
@@ -15,7 +15,7 @@ const RequestsBar = ({getDataBtn}) => {
 
     function deleteHistoryElement() {
         const deleted = savedhistory.slice(1, savedhistory.length)
-        console.log('deleted', deleted)
+        // console.log('deleted', deleted)
         dispatch(removeHistory(deleted))
     }
     
@@ -34,6 +34,7 @@ const RequestsBar = ({getDataBtn}) => {
 }
 
 const HistoryElement = ({obj, getDataBtn}) => {
+    console.log("OBJJJJJJJJ", obj);
     const dispatch = useDispatch()
     const toggleDropdown = (id, e) => {
         const el = document.getElementById(id);
@@ -54,7 +55,7 @@ const HistoryElement = ({obj, getDataBtn}) => {
 
     const fulfill = (obj) => {
         const request = { action: obj.action}
-        console.log('request', request)
+        // console.log('request', request)
         getDataBtn(JSON.stringify(request))
         // dispatch(getData(request))
     }

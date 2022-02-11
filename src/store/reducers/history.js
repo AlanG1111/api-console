@@ -19,14 +19,14 @@ export default {
           };
         },
         [ActionTypes.REMOVE_HISTORY]: (state, {payload}) => {
-          console.log("payload/REMOVE_HISTORY", payload)
+          // console.log("payload/REMOVE_HISTORY", payload)
           return {
             ...state,
             history: payload ,
           };
         },
         [ActionTypes.SAVE_HISTORY]: (state, {payload}) => {
-          console.log("payload/SAVE_HISTORY", payload)
+          // console.log("payload/SAVE_HISTORY", payload)
           const prevHistory = state.history
           // payload = JSON.parse(payload)
           payload.id = Math.random()

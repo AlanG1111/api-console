@@ -14,7 +14,7 @@ const MainBlock = () => {
     
     const ACT = { "action": "pong"}
     function getDataBtn (requestFromHistory) {
-        console.log('requestFromHistory',requestFromHistory)
+        // console.log('requestFromHistory',requestFromHistory)
         if(requestFromHistory) {
             dispatch(getData(requestFromHistory))
             setRequest(requestFromHistory)
@@ -39,8 +39,8 @@ const MainBlock = () => {
             dispatch(saveHistory(req))
         }
         
-        console.log('answerSuccess', answerSuccess)
-        console.log('answerFailure', answerFailure)
+        // console.log('answerSuccess', answerSuccess)
+        // console.log('answerFailure', answerFailure)
     }
     
     function formatText() {

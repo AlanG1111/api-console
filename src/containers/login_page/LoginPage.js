@@ -21,7 +21,7 @@ function LoginPage({history}) {
   const [isLoading, setIsLoading] = useState(false)
   // console.log({isLoggedIn})
   // console.log("login", login)
-  console.log('loading', loading);
+  // console.log('loading', loading);
 
   useEffect(() => {
     dispatch(authenticateFailure(null))

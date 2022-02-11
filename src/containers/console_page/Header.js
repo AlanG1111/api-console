@@ -15,8 +15,6 @@ const Header = ({handle, history}) =>  {
     const subLogin = JSON.parse(value).sublogin
     const resSubLogin = subLogin.slice(1, subLogin.length - 1)
     
-    console.log("value", value)
-    
     const doLogout = () => {
         dispatch(logout())
         history.push('/')

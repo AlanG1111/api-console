@@ -4,6 +4,8 @@ import api from 'src/helpers/sendsay';
 import {ActionTypes} from 'src/store/constants';
 import {authenticateSuccess, authenticateFailure, } from 'src/store/actions';
 
+import {getDataSuccess, getDataFailure} from 'src/store/actions';
+
 export function* authenticateCheckSaga() {
   try {
     yield api.sendsay.request({
@@ -46,13 +48,14 @@ export function* authenticateSaga({payload}) {
 }
 
 export function* logoutSaga() {
-  console.log("authenticateFailure", authenticateFailure)
+  // console.log("authenticateFailure", authenticateFailure)
   yield put(authenticateFailure());
   document.cookie = '';
 }
 
 export default function* root() {
   yield all([
+    // takeLatest(ActionTypes.GET_DATA, getDataSaga),
     takeLatest(ActionTypes.AUTHENTICATE, authenticateSaga),
     takeLatest(ActionTypes.AUTHENTICATE_CHECK, authenticateCheckSaga),
     takeLatest(ActionTypes.LOGOUT, logoutSaga),
