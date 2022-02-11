@@ -18,7 +18,7 @@ export function* getDataSaga({payload}) {
   let error = null
   let response = null
     yield api.sendsay.request(
-      { "action": "sys.settings.get"}
+      payload
     )
     .then((resp) => {
       console.log('resp', resp)
@@ -31,7 +31,7 @@ export function* getDataSaga({payload}) {
     if(!error) {
       yield put(
         getDataSuccess({
-            data: response
+            answer: response
         })
       );
     } else {

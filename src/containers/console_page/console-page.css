@@ -88,6 +88,10 @@
     background: rgba(48, 184, 0, 1);
 }
 
+.requests-tracker-error {
+    background: rgba(207, 44, 0, 1);
+}
+
 .ellipse {
     border-radius: 50%;
     height: 10px;

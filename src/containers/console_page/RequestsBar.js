@@ -46,8 +46,7 @@ const HistoryElement = ({obj, getDataBtn}) => {
 
     const hideDropdown = (id, e) => {
         const el = document.getElementById(id);
-        console.log('el', el.id)
-        console.log('ev', e.target.id)
+        
         if (el.style.display === "flex" && e.target.id !== (id || id + 2 || id + 1)) {
             el.style.display = "none";
         }
@@ -68,9 +67,8 @@ const HistoryElement = ({obj, getDataBtn}) => {
         const copied = JSON.stringify({ action: str})
         const area = document.createElement('textarea');
         const el = document.getElementById(id);
-        console.log('el',el)
+
         if (e.target.id !== id) {
-            console.log('el2',el)
             el.classList.add('showed')
         }
 
@@ -79,14 +77,13 @@ const HistoryElement = ({obj, getDataBtn}) => {
           area.select();
           document.execCommand("copy");
         document.body.removeChild(area);
-        console.log('copied',copied)
-        console.log('id',id)
     }
     
     return (
         <div key={obj.id} id={obj.id + 1} className="requests-tracker-element"  
             onMouseLeave={(e) => {hideDropdown(obj.id, e)}}>
-            <div className="requests-tracker-answer ellipse"></div>
+            {obj.haveError ? <div className="requests-tracker-error ellipse"></div>
+                : <div className="requests-tracker-answer ellipse"></div>}
             <span>{`${obj.action}`}</span>
             <img 
                 id={obj.id + 2} onClick={(e) => toggleDropdown(obj.id, e)}

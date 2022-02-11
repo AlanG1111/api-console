@@ -15,12 +15,13 @@ const MainBlock = () => {
     const ACT = { "action": "pong"}
     function getDataBtn (requestFromHistory) {
         console.log('requestFromHistory',requestFromHistory)
-        // if(requestFromHistory) {
-        //     dispatch(getData(requestFromHistory))
-        //     setRequest(requestFromHistory)
-        // } else {
-        //     dispatch(getData(request))
-        // }
+        if(requestFromHistory) {
+            dispatch(getData(requestFromHistory))
+            setRequest(requestFromHistory)
+        } else {
+            dispatch(getData(request))
+        }
+
         dispatch(getData(request))
         if(answerSuccess) {
             setAnswer(JSON.stringify(answerSuccess, undefined, 4))
@@ -28,7 +29,15 @@ const MainBlock = () => {
             setAnswer(JSON.stringify(answerFailure, undefined, 4))
         }
         
-        dispatch(saveHistory(request))
+        if(answerFailure) {
+            const req = JSON.parse(request)
+            req.haveError = true
+            dispatch(saveHistory(req))
+        } else if(answerSuccess) {
+            const req = JSON.parse(request)
+            req.haveError = false
+            dispatch(saveHistory(req))
+        }
         
         console.log('answerSuccess', answerSuccess)
         console.log('answerFailure', answerFailure)
