@@ -85,7 +85,7 @@ const HistoryElement = ({obj, getDataBtn}) => {
     
     return (
         <div key={obj.id} id={obj.id + 1} className="requests-tracker-element"  
-            onMouseOut={(e) => {hideDropdown(obj.id, e)}}>
+            onMouseLeave={(e) => {hideDropdown(obj.id, e)}}>
             <div className="requests-tracker-answer ellipse"></div>
             <span>{`${obj.action}`}</span>
             <img 
