@@ -1,3 +1,4 @@
+import { func } from "prop-types";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getData, saveHistory } from "src/store/actions";
@@ -78,6 +79,30 @@ const MainBlock = () => {
             textarea.style.borderColor = "rgba(0, 0, 0, 0.2)"
         }
     }
+
+    function mousedown (e) {
+        let currentResizer;
+        const el = document.getElementById('textarea-to-format')
+        currentResizer = e.target;
+        
+        let prevX = e.clientX
+
+        window.addEventListener('mousemove', mousemove)
+        window.addEventListener('mouseup', mouseup)
+
+        function mousemove(e) {
+            const rect = el.getBoundingClientRect()
+
+            el.style.width = rect.width - (prevX - e.clientX) + 'px' ;
+            console.log(el.style.width)
+            prevX = e.clientX
+        }
+
+        function mouseup() {
+            window.removeEventListener('mousedown', mousedown)
+            window.removeEventListener('mouseup', mouseup)
+        }
+    }
     
     return (
         <>
@@ -87,7 +112,7 @@ const MainBlock = () => {
                 <span>{TEXT_REQUEST}</span>
                 <textarea id="textarea-to-format" value={request} onChange={(e) => setRequest(e.target.value)} />
             </div>
-            <img className="main-block-dots" src="/icons/dots.svg" alt="dots" />
+            <img onMouseDown={(e) => {mousedown(e)}} className="main-block-dots" src="/icons/dots.svg" alt="dots" />
             <div className="response-answer-area">
                 <span>{TEXT_RESPONSE}</span>
                 <textarea id="textarea-for-answer" readOnly value={answer} />

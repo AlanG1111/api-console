@@ -177,8 +177,9 @@
 }
 
 .main-block-dots {
-    margin: 0 3px;
-    cursor: pointer;
+    cursor: col-resize;
+    position: absolute;
+    z-index: 2;
 }
 
 .response-answer-area {
@@ -201,6 +202,10 @@
     font-size: 14px;
     resize: none;
     min-height: 75vh;
+}
+
+.response-answer-area:first-child {
+    margin-right: 10px;
 }
 
 /* FOOTER  */
