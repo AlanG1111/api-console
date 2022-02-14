@@ -14,8 +14,7 @@ const RequestsBar = ({getDataBtn}) => {
     }
 
     function deleteHistoryElement() {
-        const deleted = savedhistory.slice(1, savedhistory.length)
-        // console.log('deleted', deleted)
+        const deleted = []
         dispatch(removeHistory(deleted))
     }
     
@@ -55,9 +54,7 @@ const HistoryElement = ({obj, getDataBtn}) => {
 
     const fulfill = (obj) => {
         const request = { action: obj.action}
-        // console.log('request', request)
         getDataBtn(JSON.stringify(request))
-        // dispatch(getData(request))
     }
 
     const removeElement = (id) => {

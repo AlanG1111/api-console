@@ -7,7 +7,7 @@ import RequestsBar from "./RequestsBar";
 
 const MainBlock = () => {
     const dispatch = useDispatch()
-    const answerSuccess = useSelector(state => state.data?.answer)
+    const answerSuccess = useSelector(state => state.data?.answer.answer)
     const answerFailure = useSelector(state => state.data?.error)
     const [request, setRequest] = useState('')
     const [answer, setAnswer] = useState('')
@@ -39,8 +39,8 @@ const MainBlock = () => {
             dispatch(saveHistory(req))
         }
         
-        // console.log('answerSuccess', answerSuccess)
-        // console.log('answerFailure', answerFailure)
+        console.log('answerSuccess', answerSuccess)
+        console.log('answerFailure', answerFailure)
     }
     
     function formatText() {

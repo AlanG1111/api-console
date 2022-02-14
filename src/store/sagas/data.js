@@ -1,20 +1,10 @@
-import {all, put, call, takeLatest} from 'redux-saga/effects';
+import {all, put, takeLatest} from 'redux-saga/effects';
 import api from 'src/helpers/sendsay';
 
 import {ActionTypes} from 'src/store/constants';
 import {getDataSuccess, getDataFailure} from 'src/store/actions';
 
-// const ads = () => {
-//     api.sendsay.request({ "action": "sys.settings.get"}).then(function(res) {
-//       console.log('res',res);
-//     }).catch ((err) => {
-//       console.log('error', err)
-//     })
-//   }
-  
-// ads()
 export function* getDataSaga({payload}) {
-  console.log("PAYLOAD", typeof(JSON.parse(payload)))
   let error = null
   let response = null
     yield api.sendsay.request(
