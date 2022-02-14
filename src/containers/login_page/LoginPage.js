@@ -12,16 +12,12 @@ function LoginPage({history}) {
   const [login, setLogin] = useState('');
   const [sublogin, setSubLogin] = useState('');
   const [password, setPassword] = useState('');
-  const loading = useSelector((state) => state.auth.loading);
   const isLoggedIn = useSelector((state) => !!state.auth.sessionKey?.length);
   const error = useSelector((state) => state.auth.error)
   const [loginDirty, setLoginDirty] = useState(false)
   const [passwordDirty, setPasswordDirty] = useState(false)
   const [formValid, setFormValid] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
-  // console.log({isLoggedIn})
-  // console.log("login", login)
-  // console.log('loading', loading);
 
   useEffect(() => {
     dispatch(authenticateFailure(null))
