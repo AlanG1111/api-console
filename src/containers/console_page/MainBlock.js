@@ -14,7 +14,7 @@ const MainBlock = () => {
     
     // const ACT = { "action": "pong"}
     function getDataBtn (requestFromHistory) {
-        // console.log('requestFromHistory',requestFromHistory)
+        console.log('requestFromHistory',requestFromHistory)
         if(requestFromHistory) {
             dispatch(getData(requestFromHistory))
             setRequest(requestFromHistory)
@@ -89,14 +89,12 @@ const MainBlock = () => {
         window.addEventListener('mouseup', mouseup)
 
         function mousemove(e) {
+            const rect2 = el2.getBoundingClientRect()
             const rect = el.getBoundingClientRect()
-            const ee = el2.getBoundingClientRect()
 
-            el.style.width = rect.width - (prevX - e.clientX) + 'px' ;
-            ee.style.width = rect.width - (prevX + e.clientX) + 'px' ;
-            // el2.style.left = e.clientX + 'px' 
-            console.log("e.clientX",e.clientX)
-            console.log("el.style.width",el.style.width)
+            el2.style.width = rect2.width + (prevX - e.clientX) + 'px' ;
+            el.style.width = rect.width - (prevX - e.clientX) + 'px'
+
             prevX = e.clientX
         }
 
