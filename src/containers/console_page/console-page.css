@@ -1,0 +1,243 @@
+/* HEADER */
+.console-header {
+    background: rgba(246, 246, 246, 1);
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px;
+    max-height: 50px;
+}
+
+.console-logo-block {
+    display: flex;
+    align-items: center;
+}
+
+.console-logo-block span {
+    margin-left: 20px;
+    font-size: 20px;
+}
+
+.console-header-controls {
+    display: flex;
+    align-items: center;
+}
+
+.console-users-info {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding: 5px 15px;
+}
+
+.console-exit-button {
+    display: flex;
+    align-items: center;
+    margin: 0 30px;
+    cursor: pointer;
+}
+
+.console-exit-button:hover {
+    color:rgba(0, 85, 251, 1);
+}
+
+.console-colored-button {
+    cursor: pointer;
+}
+
+.console-colored-button:hover path {
+    stroke: rgba(0, 85, 251, 1);
+}
+
+.console-exit-button span {
+    margin-right: 11px;
+}
+
+.console-info-dots {
+    color: rgba(0, 0, 0, 0.2);
+    margin: 0 5px;
+}
+
+/* HISTORY OF REQUESTS */
+
+.requests-bar {
+    background: rgba(246, 246, 246, 1);
+    display: flex;
+    border-top: 2px solid #E5E5E5;
+    border-bottom: 2px solid #E5E5E5;
+    max-height: 50px;
+}
+
+.requests-tracker {
+    padding: 10px 15px;
+    min-width: calc(100% - 52px);
+    display: flex;
+}
+
+.requests-tracker-element {
+    margin-right: 10px;
+    padding: 0 5px;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    box-shadow: 0px 5px 41px 9px rgba(0, 0, 0, 0.2);
+}
+
+.requests-tracker-answer {
+    background: rgba(48, 184, 0, 1);
+}
+
+.requests-tracker-error {
+    background: rgba(207, 44, 0, 1);
+}
+
+.ellipse {
+    border-radius: 50%;
+    height: 10px;
+    width: 10px;
+    margin-right: 5px;
+}
+
+.requests-tracker-error {
+    background: rgba(207, 44, 0, 1);
+}
+
+.requests-tracker-copied-text {
+    position: absolute;
+}
+
+.request-tracker-dots {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.request-tracker-dropdown {
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0px 5px 41px 9px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: 25px;
+    left: -10px;
+    display: none;
+    z-index: 3;
+}
+
+.request-tracker-copied {
+    background: rgba(255, 255, 255, 1);
+    font-size: 12px;
+    position: absolute;
+    opacity: 1;
+    z-index: -1;
+}
+
+.showed {
+    z-index: 1;
+    transform: translateY(-20px);
+    opacity: 0; 
+    transition: all 3000ms ease;
+}
+
+.dropdown-buttons-el {
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.dropdown-buttons-copy:hover {
+    background: rgba(0, 85, 251, 1);
+}
+
+.dropdown-buttons-space {
+    height: 5px;
+}
+
+.dropdown-buttons-border {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-buttons-remove:hover {
+    background: rgba(207, 44, 0, 1);
+}
+
+.delete-request {
+    padding: 15px;
+    border-left: 2px solid #E5E5E5;
+    cursor: pointer;
+    background: rgba(246, 246, 246, 1);
+    box-shadow: -40px 0px 40px 0px rgba(255, 255, 255, 1);
+    z-index: 2;
+}
+
+/* MAIN BLOCK */
+
+.main-block {
+    background: rgba(255, 255, 255, 1);
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-block-dots {
+    cursor: col-resize;
+    position: absolute;
+    z-index: 2;
+    left: -8px;
+    top: 50%;
+}
+
+.response-answer-area {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+}
+
+.response-answer-area span {
+    margin-bottom: 3px;
+    font-size: 12px;
+    line-height: 20px;
+    color: rgba(153, 153, 153, 1);
+}
+
+.response-answer-area textarea {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
+    resize: none;
+    min-height: 75vh;
+}
+
+.response-answer-area:first-child {
+    margin-right: 10px;
+}
+
+/* FOOTER  */
+
+.console-footer {
+    background: rgba(246, 246, 246, 1);
+    border-top: 2px solid #E5E5E5;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.console-footer a {
+    color: rgba(153, 153, 153, 1);
+    text-decoration: none;
+}
+
+.console-footer-format {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.console-footer-format:hover {
+    color: rgba(0, 85, 251, 1);
+}
+
+.console-footer-format span {
+    margin-left: 11px;
+}

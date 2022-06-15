@@ -4,6 +4,7 @@ import {withRouter} from 'react-router-dom';
 import {authenticate, authenticateFailure} from 'src/store/actions/auth';
 import ErrorAlert from './errorAuth'
 import Spinner from './spinner'
+import {TEXT_SUBLOGIN, TEXT_API_CONSOLE, TEXT_PASSWORD, TEXT_LOGIN} from '../text_constants'
 import './loginPage.css'
 
 function LoginPage({history}) {
@@ -11,16 +12,12 @@ function LoginPage({history}) {
   const [login, setLogin] = useState('');
   const [sublogin, setSubLogin] = useState('');
   const [password, setPassword] = useState('');
-  const loading = useSelector((state) => state.auth.loading);
   const isLoggedIn = useSelector((state) => !!state.auth.sessionKey?.length);
   const error = useSelector((state) => state.auth.error)
   const [loginDirty, setLoginDirty] = useState(false)
   const [passwordDirty, setPasswordDirty] = useState(false)
   const [formValid, setFormValid] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
-  // console.log({isLoggedIn})
-  // console.log("login", login)
-  console.log('loading', loading);
 
   useEffect(() => {
     dispatch(authenticateFailure(null))
@@ -101,29 +98,29 @@ function LoginPage({history}) {
     <div className='wrapper'>
       <img className='logo-styled' src="/icons/logo.svg" alt="" />
       <form className='form-login' onSubmit={onSubmit} action="/">
-        <span>API-консолька</span>
+        <span>{TEXT_API_CONSOLE}</span>
         {error ? <ErrorAlert error={error}/> : null}
         {/* Login input  */}
-        <label htmlFor='login' id='login-label'>Логин</label>
+        <label htmlFor='login' id='login-label'>{TEXT_LOGIN}</label>
           <input 
             onBlur={(e) => {blurHandler(e)}}
             id='login' type='text' value={login} 
             onChange={(e) => loginHandler(e)} 
             placeholder="Логин" required/>
         {/* Sublogin input  */}
-        <label htmlFor='sublogin'>Сублогин</label>
+        <label htmlFor='sublogin'>{TEXT_SUBLOGIN}</label>
           <input
             id='sublogin' type='text' value={sublogin} 
             onChange={(e) => setSubLogin(e.target.value)} 
             placeholder="Сублогин" />
         {/* Password input  */}
-        <label htmlFor='password' id='password-label'>Пароль </label>
+        <label htmlFor='password' id='password-label'>{TEXT_PASSWORD}</label>
           <input
             onBlur={(e) => {blurHandler(e)}}
             id='password' type='password' value={password} 
             onChange={(e) => passwordHandler(e)} 
             placeholder="Пароль" required/>        
-        <button type="submit" onClick={onSubmit} disabled={formValid}>
+        <button className='blue-button-submit' type="submit" onClick={onSubmit} disabled={formValid}>
           {isLoading && !error ? <Spinner /> : 'Войти'}
         </button>
       </form>

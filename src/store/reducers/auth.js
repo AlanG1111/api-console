@@ -2,19 +2,18 @@ import {handleActions} from 'redux-actions';
 
 import {ActionTypes} from 'src/store/constants';
 
-export const initialState = {
+const initialState = {
   loading: false,
   sessionKey: null,
   login: null,
   sublogin: null,
-  error: null,
 };
 
 
 
 export default {
   auth: handleActions(
-    {
+    { 
       [ActionTypes.AUTHENTICATE]: (state) => {
         return {
           ...state,
@@ -31,7 +30,6 @@ export default {
         };
       },
       [ActionTypes.AUTHENTICATE_FAILURE]: (state, { payload }) => {
-        // console.log("payload", payload)
         return {
           ...state,
           sessionKey: null,

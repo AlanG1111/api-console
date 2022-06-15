@@ -2,7 +2,7 @@ import {all, put, call, takeLatest} from 'redux-saga/effects';
 import api from 'src/helpers/sendsay';
 
 import {ActionTypes} from 'src/store/constants';
-import {authenticateSuccess, authenticateFailure} from 'src/store/actions/auth';
+import {authenticateSuccess, authenticateFailure, } from 'src/store/actions';
 
 export function* authenticateCheckSaga() {
   try {
@@ -30,7 +30,6 @@ export function* authenticateSaga({payload}) {
     .catch((err) => {
       error = err
       document.cookie = '';
-      // console.log('err', error);
     });
 
     if(!error) {
@@ -47,7 +46,7 @@ export function* authenticateSaga({payload}) {
 }
 
 export function* logoutSaga() {
-  console.log("authenticateFailure", authenticateFailure)
+  // console.log("authenticateFailure", authenticateFailure)
   yield put(authenticateFailure());
   document.cookie = '';
 }
